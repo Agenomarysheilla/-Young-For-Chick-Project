@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Young4Chick Request Form</title>
+  <style>
+    body {
+      background-color: #db5b90;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input, select, button {
+      padding: 8px;
+      margin: 5px 0 15px;
+      width: 100%;
+      max-width: 300px;
+      background-color: #222222;
+      color: white;
+      border: 1px solid #8c81ec;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #6cafdb;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #6dc5e7;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #62b7f0;
+    }
+  </style>
+</head>
+<body>
+  <h2>YOUNG4CHICK REQUEST FORM</h2>
+  <form id="requestForm">
+    <label>Farmer name:</label><br />
+    <input type="text" id="name" placeholder="enter your name" required /><br />
+
+    <label>Farmer age:</label><br />
+    <select id="age">
+      <option value="20-30 years">20-30 years</option>
+      <option value="31-40 years">31-40 years</option>
+      <option value="41-50 years">41-50 years</option>
+    </select><br />
+
+    <label>Number of chicks:</label><br />
+    <input type="number" id="quantity" min="100" max="500" placeholder="number of chicks(100 - 500)" required /><br />
+
+    <label>Select chick type:</label><br />
+    <select id="chickType" required>
+      <option value="">select chick type</option>
+      <option value="Broiler">Broiler</option>
+      <option value="Layer">Layer</option>
+      <option value="Kuroiler">Kuroiler</option>
+    </select><br />
+
+    <button type="submit">Submit request</button>
+  </form>
+
+  <h2>ADMIN DASHBOARD</h2>
+  <table id="dashboard">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Chick type</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Entries will appear here -->
+    </tbody>
+  </table>
+
+  <script>
+    document.getElementById("requestForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const age = document.getElementById("age").value;
+      const type = document.getElementById("chickType").value;
+      const qty = document.getElementById("quantity").value;
+
+      const table = document.getElementById("dashboard").querySelector("tbody");
+      const newRow = document.createElement("tr");
+
+      newRow.innerHTML = `
+        <td>${name}</td>
+        <td>${age}</td>
+        <td>${type}</td>
+        <td>${qty}</td>
+      `;
+
+      table.appendChild(newRow);
+
+      // Reset form
+      document.getElementById("requestForm").reset();
+    });
+  </script>
+</body>
+</html>
